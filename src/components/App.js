@@ -1,5 +1,6 @@
 import React from 'react';
 import { Component } from 'react';
+import PropTypes from 'prop-types'
 
 import Splash from './content/Splash';
 import Home from './content/Home';
@@ -10,32 +11,34 @@ import {Content, ContentLink} from './Content';
 export default class App extends Component {
 
     render() {
+        console.log('this.props App', this.props);
         // extract some fields from the props (to avoid use this.prop.bla after)
-        const { scene } = this.props;
-
-        console.log(this.props, "this.props");
-
+        const { todos, scene } = this.props;
         return (
             <div className="container">
-
                 <ul className="nav nav-tabs">
                     {/* this should be inside another component because is repeating, but.. */}
                     <li role="presentation" className={this.props.scene === 'home' ? 'active' : ''}>
-                        <ContentLink param="home" onClick={this.props.navigate}>Home</ContentLink>
+                        <ContentLink param="home"
+                                     onClick={this.props.navigate}>Home</ContentLink>
                     </li>
 
                     <li role="presentation" className={this.props.scene === 'about' ? 'active' : ''}>
-                       <ContentLink param="about" onClick={this.props.navigate}>About</ContentLink>
+                       <ContentLink param="about"
+                                    onClick={this.props.navigate}>About</ContentLink>
                     </li>
 
                     <li role="presentation" className={this.props.scene === 'splash' ? 'active' : ''}>
-                        <ContentLink param="splash" onClick={this.props.navigate}>Splash</ContentLink>
+                        <ContentLink param="splash"
+                                     onClick={this.props.navigate}>Splash</ContentLink>
                     </li>
 
                 </ul>
 
                 <Content scene="home" current={scene}>
-                    <Home />
+                    <Home todos={todos}
+                          addTask={this.props.add}
+                          toggleTask={this.props.toggle}/>
                 </Content>
 
                 <Content scene="about" current={scene}>
@@ -57,6 +60,8 @@ export default class App extends Component {
 
             </div>
         );
-
     }
+}
+App.propTypes = {
+    count: PropTypes.number.isRequired
 }

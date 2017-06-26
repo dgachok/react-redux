@@ -6,6 +6,7 @@ import { Provider } from 'react-redux';
 import { compose, createStore, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 import persistState from 'redux-localstorage';
+import dataService from './services/data-service'
 
 // dev tools
 import { createDevTools } from 'redux-devtools';
@@ -29,7 +30,7 @@ const DevTools = createDevTools(
 // persistant storage and middleware application
 const createPersistentStore = compose(
     persistState(),
-    applyMiddleware(thunk),
+    applyMiddleware(thunk, dataService),
     DevTools.instrument()
 )(createStore);
 

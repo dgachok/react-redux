@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "build": "webpack --config --progress --profile",
-    "start": "webpack-dev-server --progress --inline"
+    "start": "webpack-dev-server --progress --inline --port 5200"
   },
   "dependencies": {
     "babel-core": "^6.4.5",
@@ -30,10 +30,12 @@
     "webpack-merge": "^0.7.3",
     "file-loader": "^0.8.5",
     "html-loader": "^0.4.3",
-    "lodash": "^4.6.1"
+    "lodash": "^4.6.1",
+    "prop-types": "lKatest"
   },
   "devDependencies": {
     "node-sass": "^4.5.0",
-    "sass-loader": "^4.1.1"
+    "sass-loader": "^4.1.1",
+    "superagent": "latest"
   }
 }
